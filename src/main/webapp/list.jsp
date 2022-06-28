@@ -21,6 +21,7 @@
 		</tr>
 		
 		<%
+			String level = (String)session.getAttribute("level");
 			Connection con = null;
 			Statement stmt = null;
 			try {
@@ -48,6 +49,7 @@
 			<td><%= id%></td>
 			<td><a href="display.jsp?id=" <%= id%>>
 				<%=rs.getString("subject") %></a></td>
+			<td><%=rs.getString("name")%></td>	
 			<td><%=rs.getString("time")%></td>
 			<td><%=rs.getString("email")%></td>
 		</tr>
@@ -57,7 +59,14 @@
 			}
 		%>
 	</table>
-	<a href="write.jsp">게시글 쓰기</a>
+	
+	<%
+		if (level.equals("3")) {
+	%>
+			<a href="write.jsp">게시글 쓰기</a>	
+	<%
+		}
+	%>
 	<%
 		if (stmt != null)
 			stmt.close();

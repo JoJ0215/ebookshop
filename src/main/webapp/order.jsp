@@ -38,7 +38,7 @@
 	ResultSet rset = stmt.executeQuery(sqlStr);
 %>
 <hr>
-<form method="post" action="orderproc.jsp">
+<form method="post" action="order_proc.jsp">
 <table border=1 cellpadding=5>
 <tr>
 <th>주문</th>
@@ -52,11 +52,13 @@
 		int id = rset.getInt("id");
 %>
 <tr>
-<td><input type="checkbox name="id" value="<%= id %>"></td>
+
+<!-- 결과 집합의 값들을 꺼내어 테이블을 작성한다. -->
+<td><input type="checkbox" name="id" value="<%= id %>"></td>
 <td><%= rset.getString("author") %></td>
 <td><%= rset.getString("title") %></td>
-<td><%= rset.getString("price") %>원</td>
-<td><%= rset.getString("qty") %>권</td>
+<td><%= rset.getInt("price") %>원</td>
+<td><%= rset.getInt("qty") %>권</td>
 </tr>
 <%
 	}
